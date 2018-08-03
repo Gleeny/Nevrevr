@@ -37,7 +37,7 @@ client.on('message', async message => {
 
     if (content.startsWith("n!info") || content.startsWith("n!help")) {
         return message.channel.send("**Please go to our Discordbots.org-page to read more about the bot: **https://discordbots.org/bot/475041313515896873")
-    } else if (content.startsWith("n!") && fs.existsSync('./collection/' + content.replace("n!", "") + '.txt')) {
+    } else if (content.startsWith("n!") && fs.existsSync('./_collection/' + content.replace("n!", "") + '.txt')) {
         if (nsfw.includes(content.replace("n!", "").toLowerCase()) && !message.channel.nsfw) return message.channel.send({
             embed: {
                 title: "This command is restricted to NSFW-channels only.",
@@ -48,7 +48,7 @@ client.on('message', async message => {
             }
         })
 
-        let collection = fs.readFileSync('./collection/' + content.replace("n!", "") + '.txt', 'utf8').split('\r\n') // for some reason, it has \r as well as \n
+        let collection = fs.readFileSync('./_collection/' + content.replace("n!", "") + '.txt', 'utf8').split('\r\n') // for some reason, it has \r as well as \n
         let random = Math.floor(Math.random() * collection.length)
         let statistics = JSON.parse(fs.readFileSync('./_statistics.json', 'utf8'));
         if (!statistics[content.replace("n!", "")]) { statistics[content.replace("n!", "")] = {}; }
