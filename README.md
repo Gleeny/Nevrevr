@@ -8,7 +8,7 @@
 </div>
 
 **Nevrevr** is a simple "Never Have I Ever"-bot with over 500+ questions in multiple categories.
-No setup required! Just add the bot using [this](https://discordapp.com/api/oauth2/authorize?client_id=475041313515896873&permissions=355392&scope=bot) link!
+No setup required! Just add the bot using [this](https://discordapp.com/api/oauth2/authorize?client_id=475041313515896873&permissions=289856&scope=bot) link!
 ** **
 <big>Purpose</big>
 
