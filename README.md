@@ -27,8 +27,8 @@ There are different purposes:
 ** **
 <big>Categories</big>
 
-clean, couples, dirty `NSFW`, embarassing, food, funny, girls, gross, guys, married, normal, random, rules.
-Explore!
+embarassing, food, funny, gross, random, rules, nsfw/couples, nsfw/dirty, nsfw/girls, nsfw/guys
+NSFW topics can only be used in NSFW channels. If you have a NHIE question you would like to add, please come on over to the support server and send us it! You will get credited.
 
 ** **
 <big>Permissions</big>
