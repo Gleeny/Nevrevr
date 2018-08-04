@@ -27,8 +27,8 @@ There are different purposes:
 ** **
 <big>Categories</big>
 
-|  | NSFW/ |
-|:-|:------|
+| Normal | NSFW |
+|:-------|:-----|
 | embarassing | couples |
 | food | dirty |
 | funny | girls |
