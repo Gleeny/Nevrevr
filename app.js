@@ -7,8 +7,6 @@ const client = new Discord.Client({ disableEveryone: true })
 // const dbl = new DBL(require('./_TOKEN.js').DBL_TOKEN, client)
 // const listcord = new Listcord.Client(require('./_TOKEN.js').LISTCORD_TOKEN)
 
-const nsfw = [ 'dirty' ]
-
 client.on('ready', () => {
     console.log("Ready!")
 
@@ -37,19 +35,37 @@ client.on('message', async message => {
 
     if (content.startsWith("n!info") || content.startsWith("n!help")) {
         return message.channel.send("**Please go to our Discordbots.org-page to read more about the bot: **https://discordbots.org/bot/475041313515896873")
+    } else if (content.startsWith("n!list")) {
+        let list = [];
+        async function getContent(dir, x = "") {
+            fs.readdirSync(dir).forEach(async file => {
+                if (file.endsWith(".txt")) list.push(x + file.replace(".txt", "")); else await getContent(dir + "/" + file, file + "/");
+            })
+        }
+
+        await getContent('./_collection');
+
+        return message.channel.send({
+            embed: {
+                title: "Category List",
+                description: "To get a question from a category, simply run \`n!<category>\`\n\n- \`" + list.join("\`\n- \`") + "\`",
+                color: message.guild.me.displayColor ? message.guild.me.displayColor : 3553599
+            }
+        })
     } else if (content.startsWith("n!") && fs.existsSync('./_collection/' + content.replace("n!", "") + '.txt')) {
-        if (nsfw.includes(content.replace("n!", "").toLowerCase()) && !message.channel.nsfw) return message.channel.send({
+        if (content.startsWith("n!nsfw/") && !message.channel.nsfw) return message.channel.send({
             embed: {
                 title: "This command is restricted to NSFW-channels only.",
                 image: {
                     url: "https://i.imgur.com/oe4iK5i.gif"
                 },
-                color: message.guild.me.displayColor
+                color: message.guild.me.displayColor ? message.guild.me.displayColor : 3553599
             }
         })
 
         let collection = fs.readFileSync('./_collection/' + content.replace("n!", "") + '.txt', 'utf8').split('\r\n') // for some reason, it has \r as well as \n
         let random = Math.floor(Math.random() * collection.length)
+        while (collection[random].includes("[D]")) random = Math.floor(Math.random() * collection.length);
         let statistics = JSON.parse(fs.readFileSync('./_statistics.json', 'utf8'));
         if (!statistics[content.replace("n!", "")]) { statistics[content.replace("n!", "")] = {}; }
         if (!statistics[content.replace("n!", "")][random]) { statistics[content.replace("n!", "")][random] = [0, 0]; fs.writeFileSync('./_statistics.json', JSON.stringify(statistics, null, 4), 'utf8') }
@@ -61,7 +77,7 @@ client.on('message', async message => {
                     icon_url: message.author.avatarURL
                 },
                 description: collection[random],
-                color: message.guild.me.displayColor,
+                color: message.guild.me.displayColor ? message.guild.me.displayColor : 3553599,
                 footer: {
                     text: "ID: " + content.replace("n!", "").toUpperCase() + "#" + random
                 }
@@ -101,7 +117,7 @@ client.on('message', async message => {
                             icon_url: message.author.avatarURL
                         },
                         description: collection[random],
-                        color: message.guild.me.displayColor,
+                        color: message.guild.me.displayColor ? message.guild.me.displayColor : 3553599,
                         footer: {
                             text: "ID: " + content.replace("n!", "").toUpperCase() + "#" + random
                         },
