@@ -27,9 +27,6 @@ There are different purposes:
 
 ** **
 
-To access a NSFW-topic, start the command with `nsfw/`. If you would like to submit your NHIE-question, please join our support server! You will get credited.
-
-** **
 <big>Permissions</big>
 
 If you're super pecky about giving bots permissions, read this:
