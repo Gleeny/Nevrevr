@@ -22,19 +22,10 @@ There are different purposes:
 | Command & Usage       | Description                                           |
 |:----------------------|:------------------------------------------------------|
 | `n!info` or `n!help`  | Get information about the bot                         |
+| `n!list`              | Get a list of categories to choose from.              |
 | `n!<category>`        | Get a question from the specified category.           |
 
 ** **
-<big>Categories</big>
-
-| Normal | NSFW |
-|:-------|:-----|
-| embarassing | couples |
-| food | dirty |
-| funny | girls |
-| gross | guys |
-| random |
-| rules |
 
 To access a NSFW-topic, start the command with `nsfw/`. If you would like to submit your NHIE-question, please join our support server! You will get credited.
 
