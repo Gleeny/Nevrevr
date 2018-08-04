@@ -28,6 +28,7 @@ There are different purposes:
 <big>Categories</big>
 
 embarassing, food, funny, gross, random, rules, nsfw/couples, nsfw/dirty, nsfw/girls, nsfw/guys
+
 NSFW topics can only be used in NSFW channels. If you have a NHIE question you would like to add, please come on over to the support server and send us it! You will get credited.
 
 ** **
