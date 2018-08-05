@@ -8,7 +8,7 @@
 </div>
 
 **Nevrevr** is a simple "Never Have I Ever"-bot with over 500+ questions in multiple categories.
-No setup required! Just add the bot using [this](https://discordapp.com/api/oauth2/authorize?client_id=475041313515896873&permissions=289856&scope=bot) link!
+No setup required! Just add the bot using [this](https://discordapp.com/api/oauth2/authorize?client_id=475041313515896873&permissions=281664&scope=bot) link!
 ** **
 <big>Purpose</big>
 
@@ -34,8 +34,6 @@ If you're super pecky about giving bots permissions, read this:
 	- A basic permission that you should allow everyone to have. It requires to look after commands.
 - Send Messages
 	- Another basic permission. It requires to respond to the commands.
-- Manage Messages
-	- It requires to remove reactions on a message (disable voting).
 - Embed Links
 	- It's using embeds.
 - Add Reactions
