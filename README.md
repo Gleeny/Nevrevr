@@ -19,11 +19,12 @@ There are different purposes:
 ** **
 <big>Commands</big>
 
-| Command & Usage       | Description                                           |
-|:----------------------|:------------------------------------------------------|
-| `n!info` or `n!help`  | Get information about the bot                         |
-| `n!list`              | Get a list of categories to choose from.              |
-| `n!<category>`        | Get a question from the specified category.           |
+| Command & Usage         | Description                                           |
+|:------------------------|:------------------------------------------------------|
+| `n!info` or `n!help`    | Get information about the bot                         |
+| `n!list`                | Get a list of categories to choose from.              |
+| `n!<category>`          | Get a question from the specified category.           |
+| `n!stats <question id>` | Get information about a question.                     |
 
 ** **
 
