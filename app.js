@@ -5,7 +5,9 @@ const Listcord = require('listcord');
 
 const client = new Discord.Client({ disableEveryone: true })
 // const dbl = new DBL(require('./_TOKEN.js').DBL_TOKEN, client)
-// const listcord = new Listcord.Client(require('./_TOKEN.js').LISTCORD_TOKEN)
+const listcord = new Listcord.Client(require('./_TOKEN.js').LISTCORD_TOKEN)
+
+let i_have_never, i_have;
 
 client.on('ready', () => {
     console.log("Ready!")
@@ -16,25 +18,28 @@ client.on('ready', () => {
         client.user.setActivity("n!info (" + fs.readFileSync('./_questions.txt') + " questions asked) [" + (client.shard.id == 0 ? "1" : client.shard.id) + "/" + client.shard.count + "]", { type: "WATCHING" })
     }, 60000)
 
-    // postStats(client)
-    // setInterval(() => { postStats(client) }, 900000)
+    postStats(client)
+    setInterval(() => { postStats(client) }, 900000)
+
+    i_have_never = client.guilds.get('471770945800110093').emojis.find("name", "i_have_never");
+    i_have = client.guilds.get('471770945800110093').emojis.find("name", "i_have")
 })
 
 async function postStats(client) {
-    dbl.postStats(client.guilds.size, client.shard.id, client.shard.count).then().catch(console.log);
+    // dbl.postStats(client.guilds.size, client.shard.id, client.shard.count).then().catch(console.log);
     const counts = await client.shard.broadcastEval('this.guilds.size')
     listcord.postStats(client.user.id, counts.reduce((prev, val) => prev + val, 0), client.shard.count).then().catch(console.log);
 }
 
 client.on('message', async message => {
-    let content = message.content;
+    let content = message.content.toLowerCase();
 
     if (message.author.bot) return;
     
     if (!message.guild) return message.channel.send(":x: This bot can only be used in guilds. If you want to read more, please go to our Discordbots.org-page: https://discordbots.org/bot/475041313515896873") // dms
 
     if (content.startsWith("n!info") || content.startsWith("n!help")) {
-        return message.channel.send("**Please go to our Discordbots.org-page to read more about the bot: **https://discordbots.org/bot/475041313515896873")
+        return message.channel.send("**Please go to our Discordbots.org-page to read more about the bot: **https://discordbots.org/bot/475041313515896873" + "\n(DiscordBots hasn't accepted my bot yet, please visit the GitHub-page instead: <https://github.com/Gleeny/Nevrevr>)")
     } else if (content.startsWith("n!list")) {
         let list = [];
         async function getContent(dir, x = "") {
@@ -85,9 +90,6 @@ client.on('message', async message => {
         }).then(msg => {
             fs.writeFileSync('./_questions.txt', parseInt(fs.readFileSync('./_questions.txt')) + 1) // log it, so we can use it in the rich presence
 
-            let i_have_never = client.guilds.get('471770945800110093').emojis.find("name", "i_have_never");
-            let i_have = client.guilds.get('471770945800110093').emojis.find("name", "i_have")
-
             msg.react(i_have_never).then(() => { msg.react(i_have) })
 
             msg.awaitReactions((reaction, user) => !user.bot && (i_have_never.id == reaction.emoji.id || i_have.id == reaction.emoji.id), { time: 30000 }).then(reactions => {
@@ -110,7 +112,7 @@ client.on('message', async message => {
 
                 msg.clearReactions();
 
-                msg.edit({
+                msg.channel.send({
                     embed: {
                         author: {
                             name: message.author.tag + " (" + message.author.id + ")",
@@ -136,7 +138,48 @@ client.on('message', async message => {
                     }
                 })
 
+                msg.delete();
+
             })
+        })
+    } else if (content.startsWith("n!stats")) {
+        if (content == "n!stats") return message.channel.send("**Wrong usage!** Please use the following format: \`n!stats <question id>\` (Ex. n!stats FOOD#4 - You can find the question ID whenever the bot sends a NHIE-question.)")
+        let args = content.replace("n!stats ", "").split(" ");
+        let category = args[0].split("#")[0].toLowerCase();
+        let line = parseInt(args[0].split("#")[1]);
+        if (!line) return message.channel.send("**Wrong usage!** Please use the following format: \`n!stats <question id>\` (Ex. n!stats FOOD#4 - You can find the question ID whenever the bot sends a NHIE-question.)")
+        
+        let statistics = JSON.parse(fs.readFileSync('./_statistics.json', 'utf8'));
+        if (!statistics[category]) { statistics[category] = {}; }
+
+        if (!fs.existsSync('./_collection/' + category + '.txt')) return message.channel.send("**Category does not exist.** Please check \`n!list\` for a list of categories.")
+
+        let collection = fs.readFileSync('./_collection/' + category + '.txt', 'utf8').split('\r\n'); 
+        let question = collection[line]
+
+        if (!question) return message.channel.send("**Question does not exist.** Please choose a number between 0 and " + collection.length);
+
+        let ratio = statistics[category][line];
+        if (!ratio) return message.channel.send("**This question has no statistics.** This is probably because the question has never been asked in any server.");
+
+        message.channel.send({
+            embed: {
+                title: "Statistics",
+                description: question,
+                color: message.guild.me.displayColor ? message.guild.me.displayColor : 3553599,
+                fields: [
+                    {
+                        name: `${i_have_never} I HAVE NEVER`,
+                        value: ratio[0],
+                        inline: true
+                    },
+                    {
+                        name: `${i_have} I HAVE`,
+                        value: ratio[1],
+                        inline: true
+                    }
+                ]
+            }
         })
     }
 });
