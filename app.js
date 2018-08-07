@@ -4,7 +4,7 @@ const DBL = require('dblapi.js');
 const Listcord = require('listcord');
 
 const client = new Discord.Client({ disableEveryone: true })
-// const dbl = new DBL(require('./_TOKEN.js').DBL_TOKEN, client)
+const dbl = new DBL(require('./_TOKEN.js').DBL_TOKEN, client)
 const listcord = new Listcord.Client(require('./_TOKEN.js').LISTCORD_TOKEN)
 
 let i_have_never, i_have;
@@ -26,7 +26,7 @@ client.on('ready', () => {
 })
 
 async function postStats(client) {
-    // dbl.postStats(client.guilds.size, client.shard.id, client.shard.count).then().catch(console.log);
+    dbl.postStats(client.guilds.size, client.shard.id, client.shard.count).then().catch(console.log);
     const counts = await client.shard.broadcastEval('this.guilds.size')
     listcord.postStats(client.user.id, counts.reduce((prev, val) => prev + val, 0), client.shard.count).then().catch(console.log);
 }
