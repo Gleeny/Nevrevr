@@ -51,6 +51,11 @@ If you're super pecky about giving bots permissions, read this:
 Since we can change our names on Discord whenever we want, you can find us on the [support server](https://discord.gg/JbHX5U3).
 
 ** **
+<big>Translate the bot</big>
+
+We will launch different languages to the bot, and we need your help! If you want to help, go to our [support server](https://discord.gg/JbHX5U3) and send me (Promise) a DM! As a reward, you get the "Contributor" role and will get listed here.
+
+** **
 <big>Vote for us</big>
 
 To support us free, please vote on our bot at these bot sites:
