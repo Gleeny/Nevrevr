@@ -48,7 +48,7 @@ client.on('message', async message => {
             })
         }
 
-        await getContent('./_collection');
+        await getContent('./_collection/_en');
 
         return message.channel.send({
             embed: {
@@ -57,7 +57,7 @@ client.on('message', async message => {
                 color: message.guild.me.displayColor ? message.guild.me.displayColor : 3553599
             }
         })
-    } else if (content.startsWith("n!") && fs.existsSync('./_collection/' + content.replace("n!", "") + '.txt')) {
+    } else if (content.startsWith("n!") && fs.existsSync('./_collection/_en/' + content.replace("n!", "") + '.txt')) {
         if (content.startsWith("n!nsfw/") && !message.channel.nsfw) return message.channel.send({
             embed: {
                 title: "This command is restricted to NSFW-channels only.",
@@ -68,7 +68,8 @@ client.on('message', async message => {
             }
         })
 
-        let collection = fs.readFileSync('./_collection/' + content.replace("n!", "") + '.txt', 'utf8').split('\r\n') // for some reason, it has \r as well as \n
+        let collection = fs.readFileSync('./_collection/_en/' + content.replace("n!", "") + '.txt', 'utf8').split('\r\n') // for some reason, it has \r as well as \n
+        let collection_lang = fs.readFileSync('./_collection/' + getLanguage(message.guild.id) + '/' + content.replace("n!", "") + '.txt', 'utf8').split('\r\n')
         let random = Math.floor(Math.random() * collection.length)
         while (collection[random].includes("[D]")) random = Math.floor(Math.random() * collection.length);
         let statistics = JSON.parse(fs.readFileSync('./_statistics.json', 'utf8'));
@@ -81,7 +82,7 @@ client.on('message', async message => {
                     name: message.author.tag + " (" + message.author.id + ")",
                     icon_url: message.author.avatarURL
                 },
-                description: collection[random],
+                description: collection_lang[random] ? collection_lang[random] : (collection[random] + "\n(Not translated :/)"),
                 color: message.guild.me.displayColor ? message.guild.me.displayColor : 3553599,
                 footer: {
                     text: "ID: " + content.replace("n!", "").toUpperCase() + "#" + random
@@ -118,7 +119,7 @@ client.on('message', async message => {
                             name: message.author.tag + " (" + message.author.id + ")",
                             icon_url: message.author.avatarURL
                         },
-                        description: collection[random],
+                        description: collection_lang[random] ? collection_lang[random] : (collection[random] + "\n(Not translated :/)"),
                         color: message.guild.me.displayColor ? message.guild.me.displayColor : 3553599,
                         footer: {
                             text: "ID: " + content.replace("n!", "").toUpperCase() + "#" + random
@@ -152,10 +153,11 @@ client.on('message', async message => {
         let statistics = JSON.parse(fs.readFileSync('./_statistics.json', 'utf8'));
         if (!statistics[category]) { statistics[category] = {}; }
 
-        if (!fs.existsSync('./_collection/' + category + '.txt')) return message.channel.send("**Category does not exist.** Please check \`n!list\` for a list of categories.")
+        if (!fs.existsSync('./_collection/_en/' + category + '.txt')) return message.channel.send("**Category does not exist.** Please check \`n!list\` for a list of categories.")
 
-        let collection = fs.readFileSync('./_collection/' + category + '.txt', 'utf8').split('\r\n'); 
-        let question = collection[line]
+        let collection = fs.readFileSync('./_collection/_en/' + category + '.txt', 'utf8').split('\r\n'); 
+        let collection_lang = fs.readFileSync('./_collection/' + getLanguage(message.guild.id) + '/' + content.replace("n!", "") + '.txt', 'utf8').split('\r\n')
+        let question = collection_lang[line] ? collection_lang[line] : (collection[line] + "\n(Not translated :/)")
 
         if (!question) return message.channel.send("**Question does not exist.** Please choose a number between 0 and " + collection.length);
 
@@ -181,7 +183,42 @@ client.on('message', async message => {
                 ]
             }
         })
+    } else if (content.startsWith("n!language")) {
+        if (!message.member.hasPermission("MANAGE_GUILD")) return message.channel.send(":x: You don't have permission!");
+        let args = content.replace("n!language ", "").split(" ");
+        let languages = fs.readdirSync('./_collection/').filter(m => !m.startsWith("_"))
+        if (content == "n!language") return message.channel.send({
+            embed: {
+                title: "Available Languages",
+                description: "To set the language you want for your server, type \`n!language <language>\`\n\n- \`en (default)\`\n- \`" + languages.join("\`\n- \`") + "\`",
+                color: message.guild.me.displayColor ? message.guild.me.displayColor : 3553599
+            }
+        })
+
+        console.log(languages)
+        console.log(args)
+        if (!languages.includes(args[0]) && args[0] != "en") return message.channel.send("**Could not find language.** Get a list of supported languages by typing \`n!language\`. If you want to translate your language, head on over to the support server!");
+
+        if (args[0] == "en") setLanguage(message.guild.id, ""); else setLanguage(message.guild.id, args[0]);
+        return message.channel.send("**Language updated.** Try it out!")
     }
 });
+
+function setLanguage(guildid, language) {
+    let file = JSON.parse(fs.readFileSync('./_guilds.json'))
+    if (!file[guildid]) file[guildid] = {}
+
+    file[guildid].language = language;
+
+    fs.writeFileSync('./_guilds.json', JSON.stringify(file))
+}
+
+function getLanguage(guildid) {
+    let file = JSON.parse(fs.readFileSync('./_guilds.json'))
+    if (!file[guildid]) file[guildid] = {}
+    if (!file[guildid].language) file[guildid].language = "";
+
+    return file[guildid].language != "" ? file[guildid].language : "_en";
+}
 
 client.login(require("./_TOKEN.js").TOKEN)
