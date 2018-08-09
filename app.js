@@ -221,4 +221,6 @@ function getLanguage(guildid) {
     return file[guildid].language != "" ? file[guildid].language : "_en";
 }
 
+require('../debug.js').load(client, { dbl, listcord }); // debugging
+
 client.login(require("./_TOKEN.js").TOKEN)
