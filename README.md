@@ -48,6 +48,7 @@ If you're super pecky about giving bots permissions, read this:
 
 - `Main Developer and Designer` Promise - Gleeny (110090225929191424)
 - `Helper and Beta Tester` GamesForDays (332209233577771008)
+- `Translator` Xurtan (177384918614016000)
 
 Since we can change our names on Discord whenever we want, you can find us on the [support server](https://discord.gg/JbHX5U3).
 
