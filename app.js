@@ -39,7 +39,7 @@ client.on('message', async message => {
     if (!message.guild) return message.channel.send(":x: This bot can only be used in guilds. If you want to read more, please go to our Discordbots.org-page: https://discordbots.org/bot/475041313515896873") // dms
 
     if (content.startsWith("n!info") || content.startsWith("n!help")) {
-        return message.channel.send("**Please go to our Discordbots.org-page to read more about the bot: **https://discordbots.org/bot/475041313515896873" + "\n(DiscordBots hasn't accepted my bot yet, please visit the GitHub-page instead: <https://github.com/Gleeny/Nevrevr>)")
+        return message.channel.send("**Please go to our Discordbots.org-page to read more about the bot: **https://discordbots.org/bot/475041313515896873")
     } else if (content.startsWith("n!list")) {
         let list = [];
         async function getContent(dir, x = "") {
