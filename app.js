@@ -156,7 +156,7 @@ client.on('message', async message => {
         if (!fs.existsSync('./_collection/_en/' + category + '.txt')) return message.channel.send("**Category does not exist.** Please check \`n!list\` for a list of categories.")
 
         let collection = fs.readFileSync('./_collection/_en/' + category + '.txt', 'utf8').split('\r\n'); 
-        let collection_lang = fs.readFileSync('./_collection/' + getLanguage(message.guild.id) + '/' + content.replace("n!", "") + '.txt', 'utf8').split('\r\n')
+        let collection_lang = fs.readFileSync('./_collection/' + getLanguage(message.guild.id) + '/' + category + '.txt', 'utf8').split('\r\n')
         let question = collection_lang[line] ? collection_lang[line] : (collection[line] + "\n(Not translated :/)")
 
         if (!question) return message.channel.send("**Question does not exist.** Please choose a number between 0 and " + collection.length);
