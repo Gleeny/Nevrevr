@@ -1,0 +1,57 @@
+{
+    "commands": [
+        {
+            "command": "help",
+            "args": "",
+            "example": "",
+            "description": "Gives you this help-message."
+        },
+        {
+            "command": "list",
+            "args": "",
+            "example": "",
+            "description": "Get a list of categories to choose from"
+        },
+        {
+            "command": "",
+            "args": "<category>",
+            "example": "discord",
+            "description": "Get a question from the specified category."
+        },
+        {
+            "command": "stats",
+            "args": "<question id>",
+            "example": "stats FOOD#4",
+            "description": "Get information about a question."
+        },
+        {
+            "command": "language",
+            "args": "[language]",
+            "example": "language es",
+            "description": "Set a language for the guild. Leave empty to get list."
+        }
+    ],
+    "contributors": [
+        {
+            "user": "Promise",
+            "userID": "110090225929191424",
+            "role": "Main Developer and Designer"
+        },
+        {
+            "user": "GamesForDays",
+            "userID": "332209233577771008",
+            "role": "Helper and Beta Tester"
+        },
+        {
+            "user": "Xurtan",
+            "userID": "177384918614016000",
+            "role": "Translator"
+        }
+    ],
+    "prefix": "n!",
+    "embedColor": {
+        "ok": 4437377,
+        "err": 15746887,
+        "warn": 16426522
+    }
+}

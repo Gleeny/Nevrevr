@@ -7,6 +7,7 @@ const client = new Discord.Client({ disableEveryone: true })
 const dbl = new DBL(require('./_TOKEN.js').DBL_TOKEN, client)
 const listcord = new Listcord.Client(require('./_TOKEN.js').LISTCORD_TOKEN)
 
+const settings = JSON.parse(fs.readFileSync('./settings.json'))
 let i_have_never, i_have;
 
 client.on('ready', () => {
@@ -36,11 +37,9 @@ client.on('message', async message => {
 
     if (message.author.bot) return;
     
-    if (!message.guild) return message.channel.send(":x: This bot can only be used in guilds. If you want to read more, please go to our Discordbots.org-page: https://discordbots.org/bot/475041313515896873") // dms
-
-    if (content.startsWith("n!info") || content.startsWith("n!help")) {
-        return message.channel.send("**Please go to our Discordbots.org-page to read more about the bot: **https://discordbots.org/bot/475041313515896873")
-    } else if (content.startsWith("n!list")) {
+    if (!message.guild) return;
+    
+    if (content.startsWith("n!list")) {
         let list = [];
         async function getContent(dir, x = "") {
             fs.readdirSync(dir).forEach(async file => {
@@ -222,5 +221,7 @@ function getLanguage(guildid) {
 }
 
 require('../debug.js').load(client, { dbl, listcord }); // debugging
+require('../help.js').load(client, settings, dbl, listcord) // help command
+// They are imported because they're used on all my bots.
 
 client.login(require("./_TOKEN.js").TOKEN)
