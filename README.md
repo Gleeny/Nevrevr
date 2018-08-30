@@ -3,7 +3,7 @@
   
 [![Discord Bots](https://discordbots.org/api/widget/status/475041313515896873.svg)](https://discordbots.org/bot/475041313515896873) [![Discord Bots](https://discordbots.org/api/widget/servers/475041313515896873.svg)](https://discordbots.org/bot/475041313515896873) [![Discord Bots](https://discordbots.org/api/widget/upvotes/475041313515896873.svg)](https://discordbots.org/bot/475041313515896873) [![Discord Bots](https://discordbots.org/api/widget/lib/475041313515896873.svg)](https://discordbots.org/bot/475041313515896873) [![Discord Bots](https://discordbots.org/api/widget/owner/475041313515896873.svg)](https://discordbots.org/bot/475041313515896873)
 
-[![Discord Bots](https://discordbots.org/api/widget/475041313515896873.svg)](https://discordbots.org/bot/475041313515896873) [![Listcord](https://nuggetbot.com/listcord/embed.png?id=475041313515896873&datacolor=35383d&backgroundcolor=23272a&accentcolor=2c2f33&offlinecolor=43b581&onlinecolor=43b581&bottomcolor=7289da&datatextcolor=bababa&keytextcolor=737375)](https://listcord.com/bot/475041313515896873)
+[![Discord Bots](https://discordbots.org/api/widget/475041313515896873.svg)](https://discordbots.org/bot/475041313515896873)
 
 </div>
 
@@ -62,7 +62,6 @@ We will launch different languages to the bot, and we need your help! If you wan
 
 To support us free, please vote on our bot at these bot sites:
 - [DiscordBots.org](https://discordbots.org/bot/475041313515896873) (main bot site)
-- [Listcord.com](https://listcord.com/bot/475041313515896873)
 
 I don't like money donations, but a vote would mean a lot :)
 
@@ -75,3 +74,7 @@ I don't like money donations, but a vote would mean a lot :)
 - By using our bot you also agree that changes can be made and downtime can occour.
 
 Any other questions can go to our [support server](https://discord.gg/JbHX5U3).
+
+** **
+
+[![Discord Bots](https://discordbots.org/api/widget/467377486141980682.svg)](https://discordbots.org/bot/countr) [![Discord Bots](https://discordbots.org/api/widget/472842075310653447.svg)](https://discordbots.org/bot/472842075310653447) [![Discord Bots](https://discordbots.org/api/widget/475041313515896873.svg)](https://discordbots.org/bot/475041313515896873)
