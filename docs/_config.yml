@@ -18,12 +18,12 @@ home: "https://gleeny.github.io" # custom
 email: "gleeny@cyberservices.com"
 description: >- # this means to ignore newlines until "baseurl:"
   Nevrevr, a "Never Have I Ever" bot with a voting system and over 500+ different questions in multiple categories. Now with language support!
-baseurl: "/Nevrevr" # the subpath of your site, e.g. /blog
+baseurl: "/nevrevr" # the subpath of your site, e.g. /blog
 url: "https://gleeny.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: GleenyPromise
 github_username:  Gleeny
 
-repository: "Gleeny/Nevrevr"
+repository: "Gleeny/nevrevr"
 
 # Build settings
 plugins:
@@ -38,11 +38,11 @@ header_pages: # idk where its used
 
 navpages: # custom
   - title: Countr
-    link: "https://gleeny.github.io/Countr"
+    link: "https://gleeny.github.io/countr"
   - title: Voicr
-    link: "https://gleeny.github.io/Voicr"
+    link: "https://gleeny.github.io/voicr"
   - title: Nevrevr
-    link: "https://gleeny.github.io/Nevrevr"
+    link: "https://gleeny.github.io/nevrevr"
   - title: "Support Server"
     link: "https://gleeny.page.link/discord"
   - title: "GitHub"
