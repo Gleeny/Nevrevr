@@ -1,5 +1,6 @@
 ---
 layout: page
+title: Nevrevr
 ---
 
 <!-- SEARCH ENGINE METADATA -->
@@ -75,9 +76,9 @@ layout: page
 $.getJSON("https://raw.githubusercontent.com/Gleeny/Nevrevr/master/settings.json", function(settings) {
   let html = '<table><thead><tr><th style="text-align:left;">Command &amp; Usage</th><th style="text-align:left;">Description</th></tr></thead><tbody>';
     
-  function formatCommand(command, index) {
-      html = html + '<tr><td style="text-align:left;"><code>' + settings.prefix + command.command + (command.args ? (command.command == "" ? "" : " ") + command.args.replace("<", "&lt;").replace(">", "&gt;") : "") + "</code></td>" + '<td style="text-align:left;">' + command.description + "</td></tr>";
-  }
+    function formatCommand(command, index) {
+      html = html + '<tr><td style="text-align:left;"><code>' + settings.prefix + command.command + (command.args ? (command.command == "" ? "" : " ") + command.args.replace(/</g, "&lt;").replace(/>/g, "&gt;") : "") + "</code></td>" + '<td style="text-align:left;">' + command.description + "</td></tr>";
+    }
   
   settings.commands.forEach(formatCommand);
   
