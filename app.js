@@ -197,6 +197,8 @@ client.on('message', async message => {
         if (args[0] == "en") setLanguage(message.guild.id, ""); else setLanguage(message.guild.id, args[0]);
         return message.channel.send("**Language updated.** Try it out!")
     }
+    
+    if (await require("../global.js").command(client, settings, dbl, message)) return; // global help command onall my bots.
 });
 
 function setLanguage(guildid, language) {
@@ -217,7 +219,6 @@ function getLanguage(guildid) {
 }
 
 require('../debug.js').load(client, { dbl}); // debugging
-require('../help.js').load(client, settings, dbl) // help command
 // They are imported because they're used on all my bots.
 
 client.login(require("./_TOKEN.js").TOKEN)
