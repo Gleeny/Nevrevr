@@ -20,8 +20,8 @@ client.on('ready', () => {
     postStats(client)
     setInterval(() => { postStats(client) }, 900000)
 
-    i_have_never = client.guilds.get('471770945800110093').emojis.find("name", "i_have_never");
-    i_have = client.guilds.get('471770945800110093').emojis.find("name", "i_have")
+    i_have_never = client.guilds.get('471770945800110093').emojis.find(emoji => emoji.name == "i_have_never");
+    i_have = client.guilds.get('471770945800110093').emojis.find(emoji => emoji.name == "i_have")
 })
 
 async function postStats(client) {
