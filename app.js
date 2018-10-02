@@ -1,6 +1,7 @@
 const Discord = require('discord.js');
 const fs = require('fs');
 const DBL = require('dblapi.js');
+const BLAPI = require("blapi")
 
 const client = new Discord.Client({ disableEveryone: true })
 const dbl = new DBL(require('./_TOKEN.js').DBL_TOKEN, client)
@@ -9,24 +10,18 @@ const settings = JSON.parse(fs.readFileSync('./settings.json'))
 let i_have_never, i_have;
 
 client.on('ready', () => {
-    console.log("Ready!")
-
     client.user.setActivity("n!info (" + fs.readFileSync('./_questions.txt') + " questions asked) [" + (client.shard.id == 0 ? "1" : client.shard.id) + "/" + client.shard.count + "]", { type: "WATCHING" })
     
     setInterval(() => {
         client.user.setActivity("n!info (" + fs.readFileSync('./_questions.txt') + " questions asked) [" + (client.shard.id == 0 ? "1" : client.shard.id) + "/" + client.shard.count + "]", { type: "WATCHING" })
     }, 60000)
 
-    postStats(client)
-    setInterval(() => { postStats(client) }, 900000)
+    // BLAPI.manualPost(server_count, client.user.id, require("./_TOKEN.js").BLAPI_TOKENS)
+    BLAPI.handle(client, require("./_TOKEN.js").BLAPI_TOKENS, 1)
 
     i_have_never = client.guilds.get('471770945800110093').emojis.find(emoji => emoji.name == "i_have_never");
     i_have = client.guilds.get('471770945800110093').emojis.find(emoji => emoji.name == "i_have")
 })
-
-async function postStats(client) {
-    dbl.postStats(client.guilds.size, client.shard.id, client.shard.count).then().catch(console.log);
-}
 
 client.on('message', async message => {
     let content = message.content.toLowerCase();
