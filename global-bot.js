@@ -118,7 +118,7 @@ module.exports.blapiKeys = {
   "botlist.space": process.env.BOTLIST_SPACE_TOKEN,
   "discordbotlist.com": process.env.DISCORDBOTLIST_COM_TOKEN,
   "discordbot.world": process.env.DISCORDBOT_WORLD_TOKEN,
-  "bots.ondiscord.pw": process.env.BOTS_ONDISCORD_PW_TOKEN,
+  "bots.discord.pw": process.env.BOTS_ONDISCORD_PW_TOKEN,
   "discordbotlist.xyz": process.env.DISCORDBOTLIST_XYZ_TOKEN,
   "bots.discordlist.app": process.env.BOTS_DISCORDLIST_APP_TOKEN,
   "discordsbestbots.xyz": process.env.DISCORDSBESTBOTS_XYZ_TOKEN,
