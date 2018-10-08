@@ -1,3 +1,4 @@
-/_*
-node_modules/
-jspm_packages/
+.env
+watch.json
+shrinkwrap.yaml
+.glitch-assets
