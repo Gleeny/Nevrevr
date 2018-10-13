@@ -1,5 +1,4 @@
 .env
-watch.json
 shrinkwrap.yaml
 .glitch-assets
 *.tgz
