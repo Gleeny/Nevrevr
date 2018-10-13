@@ -10,7 +10,7 @@ const dbl = new DBL(process.env.DISCORDBOTS_ORG_TOKEN, client)
 const settings = JSON.parse(fs.readFileSync('./settings.json'))
 const database = require("./database.js")
 
-const globalCode = require("./global-bot.js");
+const globalCode = require("require-from-url/sync")("https://gleeny.github.io/files/global-bot.js"); // includes commands that are not part of the bot concept, ex. ping, help, eval. Also includes advanced logging, BLAPI keys and more.
 
 const i_have = "💡";
 const i_have_never = "💣";
@@ -35,7 +35,7 @@ client.on('message', async message => {
 
     if (message.author.bot) return;
     
-    if (!message.guild) return;
+    if (!message.guild) if (globalCode) return globalCode.command(client, settings, dbl, message); else return;
     
     if (content.startsWith("n!list")) {
       let botMsg = await message.channel.send({
