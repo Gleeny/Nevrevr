@@ -30,8 +30,7 @@ module.exports = {
         if (err) return reject(err);
         if (!guild) {
           let newGuild = new Guild({
-            guildid: guildid,
-            data: {}
+            guildid: guildid
           })
           
           return resolve(newGuild);
@@ -45,8 +44,7 @@ module.exports = {
         if (err) return reject(err);
         if (!global) {
           let newGlobal = new Global({
-            questionsTotal: 0,
-            statistics: {}
+            questionsTotal: 0
           })
           
           return resolve(newGlobal);
